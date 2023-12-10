@@ -1,0 +1,162 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Usage Form</title>
+</head>
+<body>
+
+<h2>Drug Usage Form</h2>
+
+<div class="row">
+    <form action='/predict' method="post" class="col s12">
+    <label for="age">Age Range:</label>
+    <select name="age" id="age">
+        <option value="18-24">18-24</option>
+        <option value="25-34">25-34</option>
+        <option value="35-44">35-44</option>
+        <option value="45-54">45-54</option>
+        <option value="55+">55+</option>
+    </select>
+
+    <br>
+
+    <label for="Sex">Sex:</label>
+    <select name="Sex" id="Sex">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+
+    <br>
+
+    <label for="Education">Education:</label>
+    <select name="Education" id="Education">
+        <option value="Left school before 18 years">Left school before 18 years</option>
+        <option value="Left school at 18 years">Left school at 18 years</option>
+        <option value="Some college or university, no certificate or degree">Some college or university, no certificate or degree</option>
+        <option value="Professional certificate/ diploma">Professional certificate/ diploma</option>
+        <option value="University degree">University degree</option>
+        <option value="Masters degree">Masters degree</option>
+        <option value="Doctorate degree">Doctorate degree</option>
+    </select>
+
+    <br>
+
+    <label for="Country">Country:</label>
+    <select name="Country" id="Country">
+        <option value="Canada">Canada</option>
+        <option value="Australia">Australia</option>
+        <option value="UK">UK</option>
+        <option value="Other">Other</option>
+        <option value="USA">USA</option>
+    </select>
+
+    <br>
+
+    <label for="Ethnicity">Ethnicity:</label>
+    <select name="Ethnicity" id="Ethnicity">
+        <option value="Asian">Asian</option>
+        <option value="Black">Black</option>
+        <option value="White">White</option>
+        <option value="Mixed-Black/Asian">Mixed-Black/Asian</option>
+        <option value="Mixed-White/Asian">Mixed-White/Asian</option>
+        <option value="'Mixed-White/Black">'Mixed-White/Black</option>
+        <option value="Other">Other</option>
+    </select>
+
+    <br>
+
+    <label for="Neuroticism">Neuroticism:</label>
+    <select name="Neuroticism" id="Neuroticism">
+        <option value="Low">Low</option>
+        <option value="Average">Average</option>
+        <option value="High">High</option>
+    </select>
+
+    <br>
+
+    <label for="Extraversion">Extraversion:</label>
+    <select name="Extraversion" id="Extraversion">
+        <option value="Low">Low</option>
+        <option value="Average">Average</option>
+        <option value="High">High</option>
+    </select>
+
+    <br>
+
+    <label for="Openness">Openness:</label>
+    <select name="Openness" id="Openness">
+        <option value="Low">Low</option>
+        <option value="Average">Average</option>
+        <option value="High">High</option>
+    </select>
+
+    <br>
+
+    <label for="Agreeableness">Agreeableness:</label>
+    <select name="Agreeableness" id="Agreeableness">
+        <option value="Low">Low</option>
+        <option value="Average">Average</option>
+        <option value="High">High</option>
+    </select>
+
+    <br>
+
+    <label for="Conscientiousness">Conscientiousness:</label>
+    <select name="Conscientiousness" id="Conscientiousness">
+        <option value="Low">Low</option>
+        <option value="Average">Average</option>
+        <option value="High">High</option>
+    </select>
+
+    <br>
+
+    <label for="Impulsivness">Impulsiveness:</label>
+    <select name="Impulsivness" id="Impulsivness">
+        <option value="Low">Low</option>
+        <option value="Average">Average</option>
+        <option value="High">High</option>
+    </select>
+
+    <br>
+
+    <label for="Sensation_seeing">Sensation Seeing:</label>
+    <select name="Sensation_seeing" id="Sensation_seeing">
+        <option value="Low">Low</option>
+        <option value="Average">Average</option>
+        <option value="High">High</option>
+    </select>
+
+    <div class="row center">
+
+        <button type="submit" class="btn-large waves-effect waves-light purple">Computing</button>
+        <button type="button" class="btn-large waves-effect waves-light purple" onclick="redirectToImpact_Features()">Country Average</button>    </div>
+        <button type="button" class="btn-large waves-effect waves-light purple" onclick="redirectToDataviz()">Data Visualization</button>
+    </form>
+
+
+    <br>
+
+    {% if Prediction %}
+    <div>
+        <h2>Results:</h2>
+        {{data | safe}}
+    </div>
+    {% endif %}
+    <br>
+</div>
+
+<script>
+    function redirectToDataviz() {
+        window.location.href = '/dataviz';
+    }
+    function redirectToImpact_Features(){
+        window.location.href= '/show_graph_imp'
+    }
+</script>
+
+</body>
+</html>
+
+
+

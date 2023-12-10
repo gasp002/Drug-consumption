@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Visualization</title>
+</head>
+<body>
+
+<h2>Data Visualization</h2>
+
+<form action="/dataviz" method="post" id="visualizationForm">
+    <label for="visualization_type">Select Visualization Type:</label>
+    <select name="visualization_type" id="visualization_type" onchange="showHideFields()">
+        <option value="survey_percentage">Survey Percentage</option>
+        <option value="box_relation">Box Relation</option>
+    </select>
+
+    <br>
+
+    <div id="featureField" style="display: none;">
+        <label for="feature">Select a Feature:</label>
+        <select name="feature" id="feature">
+            {% for feature in features %}
+            <option value="{{ feature }}">{{ feature }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div id="selectedFeatFields" style="display: none;">
+        <label for="selected_feat1">Select Feature 1:</label>
+        <select name="selected_feat1" id="selected_feat1">
+            {% for feature in features %}
+            <option value="{{ feature }}">{{ feature }}</option>
+            {% endfor %}
+        </select>
+
+        <br>
+
+        <label for="selected_feat2">Select Feature 2:</label>
+        <select name="selected_feat2" id="selected_feat2">
+            {% for feature in features %}
+            <option value="{{ feature }}">{{ feature }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <br>
+
+    <input type="submit" value="Generate Visualization">
+</form>
+
+
+{% if visualization_type == 'survey_percentage' %}
+{% if chart_html %}
+<div>{{ chart_html | safe }}</div>
+{% endif %}
+{% elif visualization_type == 'box_relation' %}
+{% if box_plot %}
+<div>{{ box_plot | safe }}</div>
+{% endif %}
+{% endif %}
+
+<script>
+    function showHideFields() {
+        var visualizationType = document.getElementById("visualization_type").value;
+        var featureField = document.getElementById("featureField");
+        var selectedFeatFields = document.getElementById("selectedFeatFields");
+
+        featureField.style.display = "none";
+        selectedFeatFields.style.display = "none";
+
+        if (visualizationType === "survey_percentage") {
+            featureField.style.display = "block";
+        } else if (visualizationType === "box_relation") {
+            selectedFeatFields.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>
